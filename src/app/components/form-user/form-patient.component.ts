@@ -7,7 +7,7 @@ import { PatientService } from 'src/app/services/users.service';
 
 
 @Component({
-  selector: 'app-form-patient',
+  selector: 'app-form-user',
   templateUrl: './form-patient.component.html',
   styleUrls: ['./form-patient.component.sass']
 })

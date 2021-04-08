@@ -50,8 +50,7 @@ export class LoginComponent implements OnInit
 
   entrarComoAnonimo()
   {
-    this.loginForm.controls.email.setValue('anonimo@anonimo.com');
-    this.loginForm.controls.password.setValue('111111');
+    this.authService.loginAnonymously().then(value => {console.log(value);this.router.navigate(['/home']);});
   }
 
 

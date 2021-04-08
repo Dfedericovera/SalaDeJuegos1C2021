@@ -13,11 +13,12 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormPatientComponent } from './components/form-patient/form-patient.component';
+import { FormPatientComponent } from './components/form-user/form-patient.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AlertComponent } from './components/alert/alert.component';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { DatePipe } from '@angular/common';
+import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { DatePipe } from '@angular/common';
     SignupComponent,
     FormPatientComponent,
     AlertComponent,
+    QuienSoyComponent
   ],
   imports: [
     BrowserModule,

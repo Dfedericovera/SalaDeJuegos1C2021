@@ -36,6 +36,19 @@ export class AuthService
     }
   }
 
+  async loginAnonymously()
+  {
+    try
+    {
+      var result = await this.afAuth.signInAnonymously();
+      return result;
+    } catch (error)
+    {
+      console.error("login", error);
+      throw error;
+    }
+  }
+
   async register(email: string, password: string)
   {
     try
