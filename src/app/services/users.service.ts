@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Patient } from '../clases/Usuario';
+import { User } from '../clases/Usuario';
 import { finalize, map } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FileI } from '../interface/file';
 @Injectable({
   providedIn: 'root'
 })
-export class PatientService
+export class UserService
 {
-  //Este contendra una Coleccion de patients de la DB.
-  private patientsDB: AngularFirestoreCollection<Patient>;
-  public patients: Array<Patient>;
+  //Este contendra una Coleccion de users de la DB.
+  private usersDB: AngularFirestoreCollection<User>;
+  public users: Array<User>;
   private filePath: any;
   private downloadURL: Observable<string>;
 
@@ -22,74 +22,74 @@ export class PatientService
     private storage: AngularFireStorage
   )
   {
-    this.getPatients().subscribe(patients =>
+    this.getUsers().subscribe(users =>
     {
-      this.patients = patients;
+      this.users = users;
     })
     //? Accedemos a la base de datos de firebase.
-    //? Vamos a acceder la lista de patients en la db.
+    //? Vamos a acceder la lista de users en la db.
     //? y se implementa la funcionalidad en el segundo argumento.
-    //? La referencia que es nuestra lista de patients, se va a ordenar por nombre.
-    this.patientsDB = this.db.collection('/patients', (ref) =>
+    //? La referencia que es nuestra lista de users, se va a ordenar por nombre.
+    this.usersDB = this.db.collection('/users', (ref) =>
       ref.orderBy('date')
     );
   }
 
-  //Devuelve un Observable de tipo Patient Array.
-  getPatients(): Observable<Patient[]>
+  //Devuelve un Observable de tipo User Array.
+  getUsers(): Observable<User[]>
   {
-    return this.db.collection("patients", (ref) =>
+    return this.db.collection("users", (ref) =>
       ref.orderBy('date')).snapshotChanges().pipe(
         map((snaps) =>
           snaps.map((snap) =>
           {
-            return snap.payload.doc.data() as Patient;
+            return snap.payload.doc.data() as User;
           }))
       )
   }
 
-  createPatient(patient: Patient, photos: Array<FileI>)
+  createUser(user: User, photos: Array<FileI>)
   {
-    return this.addPatient(patient).then(patientCallback =>
+    return this.addUser(user).then(userCallback =>
     {
-      console.log('Patient created');
+      console.log('User created');
       photos.forEach(photo =>
       {
-        this.uploadImage(patient, photo);
+        this.uploadImage(user, photo);
       })
-      return patientCallback;
+      return userCallback;
     })
 
   }
 
-  //Metodo para crear un nuevo Patient en la DB
-  private addPatient(patient: Patient)
+  //Metodo para crear un nuevo User en la DB
+  private addUser(user: User)
   {
     //?Con esto FireBase se encarga de todo,
     //?no hay que pensar en endpoints o si esta o no creada la tabla.
     //?Adicionamos un nuevo paciente a la tabla.
-    return new Promise<Patient>((resolve, reject) =>
+    return new Promise<User>((resolve, reject) =>
     {
-      this.patientsDB
-        .add(JSON.parse(JSON.stringify(patient)))
+      this.usersDB
+        .add(JSON.parse(JSON.stringify(user)))
         .then(res =>
         {
-          patient.id = res.id;
-          this.editPatient(patient);
-          resolve(patient);
+          user.id = res.id;
+          this.editUser(user);
+          resolve(user);
         }, err => reject(console.error(err)));
     });
 
   }
 
-  //Delete a Patient de la DB
-  deletePatient(patient: Patient)
+  //Delete a User de la DB
+  deleteUser(user: User)
   {
     try
     {
       return this.db
-        .collection("patients")
-        .doc(patient.id)
+        .collection("users")
+        .doc(user.id)
         .delete()
         .then(res => { console.log(res) });
 
@@ -100,19 +100,19 @@ export class PatientService
 
   }
 
-  //Edit a Patient
-  editPatient(newPatient)
+  //Edit a User
+  editUser(newUser)
   {
     return this.db
-      .collection("patients")
-      .doc(newPatient.id)
-      .set(newPatient, { merge: true });
+      .collection("users")
+      .doc(newUser.id)
+      .set(newUser, { merge: true });
 
   }
 
-  private uploadImage(patient: Patient, image: FileI)
+  private uploadImage(user: User, image: FileI)
   {
-    this.filePath = `patients/${image.name}`;
+    this.filePath = `users/${image.name}`;
     const fileRef = this.storage.ref(this.filePath);
     const task = this.storage.upload(this.filePath, image);
     task.snapshotChanges()
@@ -122,10 +122,10 @@ export class PatientService
           fileRef.getDownloadURL().subscribe(urlImage =>
           {
             this.downloadURL = urlImage;
-            patient.photos = new Array;
-            patient.photos.push(this.downloadURL);
+            user.photos = new Array;
+            user.photos.push(this.downloadURL);
             /* console.log('URL_image', urlImage); */
-            this.editPatient(patient).then(() => console.log('Updated photo'));
+            this.editUser(user).then(() => console.log('Updated photo'));
           });
         })
       ).subscribe();

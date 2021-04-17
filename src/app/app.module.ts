@@ -13,7 +13,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormPatientComponent } from './components/form-user/form-patient.component';
+import { FormUserComponent } from './components/form-user/form-user.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AlertComponent } from './components/alert/alert.component';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
@@ -28,7 +28,7 @@ import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
     CarouselComponent,
     LoginComponent,
     SignupComponent,
-    FormPatientComponent,
+    FormUserComponent,
     AlertComponent,
     QuienSoyComponent
   ],

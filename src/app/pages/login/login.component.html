@@ -9,10 +9,11 @@
         <label for="inputPassword" class="sr-only">Contraseña</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="password" required
             formControlName="password">
+        <boot-alert [color]="colorAlert" [mensaje]="mensaje" *ngIf="submitted"></boot-alert>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="onLogin()"
+            [disabled]="loginForm.invalid">Entrar</button>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="onLogin()">Entrar</button>
-        <button class="btn btn-sm btn-secondary btn-block" type="submit"
-            routerLink="/signup">Registrarme</button>
+        <button class="btn btn-sm btn-secondary btn-block" type="submit" routerLink="/signup">Registrarme</button>
         <button class="btn btn-sm btn-secondary btn-block" type="submit" (click)="entrarComoAnonimo()">Entrar como
             anonimo</button>
         <p class="mt-5 mb-3 text-muted">&copy; Federico Vera</p>

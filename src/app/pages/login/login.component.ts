@@ -12,6 +12,9 @@ export class LoginComponent implements OnInit
 {
 
   loginForm: FormGroup;
+  mensaje: string;
+  submitted: boolean;
+  colorAlert:string;
 
   constructor(
     private fb: FormBuilder,
@@ -35,22 +38,24 @@ export class LoginComponent implements OnInit
   {
     this.authService.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value).then(user =>
     {
-      if (this.authService.isEmailVerified(this.authService.user))
-      {
-        console.log(this.authService.user);
+      this.colorAlert = "alert-success"
+      this.mensaje = "Verificado✓";
+      this.submitted = true;
+      setTimeout(t=>{
         this.router.navigate(['/home']);
-      }
-      else
-      {
-        console.log('Verifique su email');
-      }
-      
-    }).catch(error=>{console.log('Usuario no registrado', error)})
+      },2000)
+    }).catch(error =>
+    {
+      this.colorAlert = "alert-danger"
+      this.mensaje = error.message;
+      this.submitted = true;
+      console.log('Usuario no registrado', error)
+    })
   }
 
   entrarComoAnonimo()
   {
-    this.authService.loginAnonymously().then(value => {console.log(value);this.router.navigate(['/home']);});
+    this.authService.loginAnonymously().then(value => { console.log(value); this.router.navigate(['/home']); });
   }
 
 

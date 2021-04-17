@@ -57,23 +57,11 @@ export class AuthService
         email,
         password
       )
-      await this.sendEmailVerification();
       return user;
     } catch (error)
     {
       console.error("Register error", error);
       throw error;
-    }
-  }
-
-  async sendEmailVerification()
-  {
-    try
-    {
-      await (await this.afAuth.currentUser).sendEmailVerification();
-    } catch (error)
-    {
-      console.error("sendEmailVerification", error);
     }
   }
 
@@ -119,37 +107,6 @@ export class AuthService
     } catch (error)
     {
       console.error("isLoggedIn", error);
-    }
-  }
-
-/*   async loginWithGoogle()
-  {
-    try
-    {
-      const { user } = await this.afAuth.signInWithPopup(new auth.GoogleAuthProvider());
-      this.updateUserData(user);
-      return user;
-    } catch (error)
-    {
-      console.error("loginGoogle", error);
-    }
-  } */
-
-  private updateUserData(user: User)
-  {
-    try
-    {
-      const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`)
-      const data: User = {
-        uid: user.uid,
-        email: user.email,
-        emailVerified: user.emailVerified,
-        displayName: user.displayName,
-      };
-      return userRef.set(data, { merge: true })
-    } catch (error)
-    {
-      console.error('updateUserData', error);
     }
   }
 

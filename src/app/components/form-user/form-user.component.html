@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-12 order-md-1">
             <h4 class="mb-3">Datos Necesarios</h4>
-            <form class="needs-validation" [formGroup]="patientForm" novalidate>
+            <form class="needs-validation" [formGroup]="userForm" novalidate>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">Nombre</label>
@@ -17,9 +17,9 @@
                         <div class="invalid-feedback">
                             Valid first name is required.
                         </div>
-                        <div *ngIf="patientForm.controls['name'].invalid && (patientForm.controls['name'].dirty || patientForm.controls['name'].touched)"
+                        <div *ngIf="userForm.controls['name'].invalid && (userForm.controls['name'].dirty || userForm.controls['name'].touched)"
                             class="alert alert-danger">
-                            <div *ngIf="patientForm.controls['name'].errors.required">
+                            <div *ngIf="userForm.controls['name'].errors.required">
                                 Nombre es requerido.
                             </div>
                         </div>
@@ -61,17 +61,19 @@
                         </div>
                     </div>
                 </div> 
-                <hr class="mb-4">-->
-                <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="onSubmit()">Registrarme</button>
+                <hr class="mb-4">[disabled]="userForm.controls.pristine || userForm.controls.invalid"-->
+                <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="onSubmit()" [disabled]="userForm.invalid"
+                    >Registrarme</button>
                 <button class="btn btn-danger btn-lg btn-block" routerLink="/login">Ya tengo una
                     cuenta</button>
-                <div class="container" *ngIf="registered">
-                    <boot-alert mensaje="Verifique su correo para poder iniciar sesion, revise su buzón de entrada"
-                        color="alert-warning" (dismiss)="navigate()"></boot-alert>
+                <div class="container" *ngIf="submitted">
+                    <boot-alert [mensaje]="mensaje" color="alert-warning" (dismiss)="navigate()"></boot-alert>
                 </div>
             </form>
         </div>
     </div>
+
+
 
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
