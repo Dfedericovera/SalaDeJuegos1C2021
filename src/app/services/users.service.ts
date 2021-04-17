@@ -30,7 +30,7 @@ export class UserService
     //? Vamos a acceder la lista de users en la db.
     //? y se implementa la funcionalidad en el segundo argumento.
     //? La referencia que es nuestra lista de users, se va a ordenar por nombre.
-    this.usersDB = this.db.collection('/users', (ref) =>
+    this.usersDB = this.db.collection('/jugadores', (ref) =>
       ref.orderBy('date')
     );
   }
@@ -88,7 +88,7 @@ export class UserService
     try
     {
       return this.db
-        .collection("users")
+        .collection("jugadores")
         .doc(user.id)
         .delete()
         .then(res => { console.log(res) });
@@ -104,7 +104,7 @@ export class UserService
   editUser(newUser)
   {
     return this.db
-      .collection("users")
+      .collection("jugadores")
       .doc(newUser.id)
       .set(newUser, { merge: true });
 
@@ -112,7 +112,7 @@ export class UserService
 
   private uploadImage(user: User, image: FileI)
   {
-    this.filePath = `users/${image.name}`;
+    this.filePath = `jugadores/${image.name}`;
     const fileRef = this.storage.ref(this.filePath);
     const task = this.storage.upload(this.filePath, image);
     task.snapshotChanges()

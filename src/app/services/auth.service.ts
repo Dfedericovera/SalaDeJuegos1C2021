@@ -28,12 +28,21 @@ export class AuthService
     try
     {
       var result = await this.afAuth.signInWithEmailAndPassword(email, password);
+      console.log(result);
+      this.guardarFechaDeIngreso(result.user);
       return result;
     } catch (error)
     {
       console.error("login", error);
       throw error;
     }
+  }
+
+  guardarFechaDeIngreso(user:User){
+    let fecha = new Date();
+    this.afs.collection('/ingresos', (ref) =>
+      ref.orderBy('date')
+    ).add({usuario: user.email,fechaDeIngreso: fecha.toLocaleString()});
   }
 
   async loginAnonymously()
