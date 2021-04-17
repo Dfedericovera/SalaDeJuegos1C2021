@@ -14,9 +14,6 @@
                         <label for="firstName">Nombre</label>
                         <input type="text" class="form-control" id="firstName" formControlName="name" placeholder=""
                             value="" required>
-                        <div class="invalid-feedback">
-                            Valid first name is required.
-                        </div>
                         <div *ngIf="userForm.controls['name'].invalid && (userForm.controls['name'].dirty || userForm.controls['name'].touched)"
                             class="alert alert-danger">
                             <div *ngIf="userForm.controls['name'].errors.required">
@@ -28,9 +25,13 @@
                         <label for="lastName">Apellido</label>
                         <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder=""
                             value="" required>
-                        <div class="invalid-feedback">
-                            Valid last name is required.
+                        <div *ngIf="userForm.controls['lastName'].invalid && (userForm.controls['lastName'].dirty || userForm.controls['lastName'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="userForm.controls['lastName'].errors.required">
+                                Apellido es requerido.
+                            </div>
                         </div>
+                        
                     </div>
                 </div>
 
@@ -38,17 +39,30 @@
                     <label for="email">Correo <span class="text-muted"></span></label>
                     <input type="email" class="form-control" id="email" formControlName="email"
                         placeholder="minombre@ejemplo.com">
-                    <div class="invalid-feedback">
-                        Please enter a valid email address for shipping updates.
+                    <div *ngIf="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="userForm.controls['email'].errors.required">
+                            El email es requerido.
+                        </div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="address">Contraseña</label>
                     <input type="password" class="form-control" id="address" formControlName="password"
-                        placeholder="Contraseña" required>
-                    <div class="invalid-feedback">
-                        Please enter your shipping address.
+                        placeholder="Contraseña" minlength="6" required>
+                    <div *ngIf="userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="userForm.controls['password'].errors.required">
+                            La contraseña es requerida.
+                        </div>
+                        
+                        <div *ngIf="userForm.controls['password'].errors.minlength">
+                            La contraseña debe contener al menos 6 caracteres.
+                        </div>
                     </div>
+                </div>
+                <div class="container" *ngIf="submitted">
+                    <boot-alert [mensaje]="mensaje" [color]="colorAlert" (dismiss)="navigate()"></boot-alert>
                 </div>
                 <!-- <div class="row">
                     <div class="col-md-5 mb-3">
@@ -62,13 +76,11 @@
                     </div>
                 </div> 
                 <hr class="mb-4">[disabled]="userForm.controls.pristine || userForm.controls.invalid"-->
-                <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="onSubmit()" [disabled]="userForm.invalid"
-                    >Registrarme</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="onSubmit()"
+                    [disabled]="userForm.invalid">Registrarme</button>
                 <button class="btn btn-danger btn-lg btn-block" routerLink="/login">Ya tengo una
                     cuenta</button>
-                <div class="container" *ngIf="submitted">
-                    <boot-alert [mensaje]="mensaje" color="alert-warning" (dismiss)="navigate()"></boot-alert>
-                </div>
+
             </form>
         </div>
     </div>

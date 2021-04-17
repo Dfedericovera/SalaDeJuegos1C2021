@@ -19,7 +19,8 @@ export class FormUserComponent implements OnInit
   photo2: FileI;
   photos: Array<FileI> = new Array();
   submitted: boolean = false;
-  mensaje = "";
+  mensaje:string;
+  colorAlert:string;
 
   constructor(
     private authService: AuthService,
@@ -56,16 +57,20 @@ export class FormUserComponent implements OnInit
           this.userService.createUser(this.userForm.value, this.photos).then(user =>
           {
             console.log('Registrado correctamente');
+            this.colorAlert = "alert-success"
             this.mensaje = "Registrado correctamente";
             this.submitted = true;
             setTimeout(t =>{
-              this.router.navigate(["/login"]);
+              this.authService.login(this.userForm.controls.email.value,this.userForm.controls.password.value).then(t=>{
+                this.router.navigate(["/home"]);
+              })              
             },2000)            
           });
         }
       }).catch(error =>
       {
         console.log('Error', error);
+        this.colorAlert = "alert-danger"
         this.mensaje = error.message;/* "Hubo un problema al registrarse" */
         this.submitted = true;
       });
