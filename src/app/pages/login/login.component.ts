@@ -57,6 +57,11 @@ export class LoginComponent implements OnInit
   {
     this.authService.loginAnonymously().then(value => { console.log(value); this.router.navigate(['/home']); });
   }
+  
+  entrarComoAdmin(){
+    this.loginForm.controls.email.setValue("admin@admin.com");
+    this.loginForm.controls.password.setValue("111111");
+  }
 
 
 }
