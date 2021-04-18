@@ -19,6 +19,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { DatePipe } from '@angular/common';
 import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
+import { SaladechatComponent } from './pages/saladechat/saladechat.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
     SignupComponent,
     FormUserComponent,
     AlertComponent,
-    QuienSoyComponent
+    QuienSoyComponent,
+    SaladechatComponent
   ],
   imports: [
     BrowserModule,

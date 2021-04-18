@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   email:string="JUANITO";
 
   constructor(private authService:AuthService) {
-    this.email = this.authService.user.email;
+    this.email = JSON.parse(localStorage.getItem('user')).email;
    }
 
   ngOnInit(): void {
