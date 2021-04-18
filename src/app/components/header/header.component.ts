@@ -8,10 +8,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  email:string="JUANITO";
+  email:string;
 
   constructor(private authService:AuthService) {
-    this.email = this.authService.user.email;
+    this.email = JSON.parse(localStorage.getItem('user')).email;
    }
 
   ngOnInit(): void {
