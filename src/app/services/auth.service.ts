@@ -29,6 +29,7 @@ export class AuthService
     {
       var result = await this.afAuth.signInWithEmailAndPassword(email, password);
       console.log(result);
+      localStorage.setItem("user",JSON.stringify(result.user));
       this.guardarFechaDeIngreso(result.user);
       return result;
     } catch (error)
