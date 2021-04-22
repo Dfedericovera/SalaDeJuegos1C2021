@@ -15,7 +15,7 @@ export class UserService
   public users: Array<User>;
   private filePath: any;
   private downloadURL: Observable<string>;
-
+  public jugador:User;
 
   constructor(
     private db: AngularFirestore,
@@ -25,30 +25,40 @@ export class UserService
     this.getUsers().subscribe(users =>
     {
       this.users = users;
+      var jug = JSON.parse(localStorage.getItem('user')) as User;
+      users.forEach(jugador =>
+      {
+
+        if (jugador.email == jug.email)
+        {
+          this.jugador = jugador;
+        }
+
+      })
     })
     //? Accedemos a la base de datos de firebase.
     //? Vamos a acceder la lista de users en la db.
     //? y se implementa la funcionalidad en el segundo argumento.
     //? La referencia que es nuestra lista de users, se va a ordenar por nombre.
     this.usersDB = this.db.collection('/jugadores', (ref) =>
-      ref.orderBy('date')
-    );
+    ref.orderBy('date')
+  );
   }
 
-  //Devuelve un Observable de tipo User Array.
-  getUsers(): Observable<User[]>
-  {
-    return this.db.collection("users", (ref) =>
-      ref.orderBy('date')).snapshotChanges().pipe(
-        map((snaps) =>
-          snaps.map((snap) =>
-          {
-            return snap.payload.doc.data() as User;
-          }))
-      )
-  }
+//Devuelve un Observable de tipo User Array.
+getUsers(): Observable < User[] >
+{
+  return this.db.collection("users", (ref) =>
+    ref.orderBy('date')).snapshotChanges().pipe(
+      map((snaps) =>
+        snaps.map((snap) =>
+        {
+          return snap.payload.doc.data() as User;
+        }))
+    )
+}
 
-  createUser(user: User, photos: Array<FileI>)
+createUser(user: User, photos: Array<FileI>)
   {
     return this.addUser(user).then(userCallback =>
     {
@@ -93,7 +103,7 @@ export class UserService
         .delete()
         .then(res => { console.log(res) });
 
-    } catch (error)
+    } catch(error)
     {
       console.log('Error: ', error);
     }

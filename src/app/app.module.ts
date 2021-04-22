@@ -21,6 +21,7 @@ import { DatePipe } from '@angular/common';
 import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 import { SalaDeChatComponent } from './pages/sala-de-chat/sala-de-chat.component';
 import { MenujuegosComponent } from './pages/menujuegos/menujuegos.component';
+import { PptComponent } from './pages/ppt/ppt.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MenujuegosComponent } from './pages/menujuegos/menujuegos.component';
     AlertComponent,
     QuienSoyComponent,
     SalaDeChatComponent,
-    MenujuegosComponent
+    MenujuegosComponent,
+    PptComponent
   ],
   imports: [
     BrowserModule,

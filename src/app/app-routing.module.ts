@@ -36,6 +36,10 @@ const routes: Routes = [
     path: `menujuegos`, loadChildren: () =>
       import('./pages/menujuegos/menujuegos.module').then(m => m.MenujuegosModule)
   },
+  {
+    path: `ppt`, loadChildren: () =>
+      import('./pages/ppt/ppt.module').then(m => m.PptModule)
+  },
   { path: ``, redirectTo: `login`, pathMatch: `full` }
 ];
 
