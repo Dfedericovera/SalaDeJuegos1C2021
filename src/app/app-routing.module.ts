@@ -6,10 +6,31 @@ import { MenuPrincipalComponent } from './pages/menu-principal/menu-principal.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 const routes: Routes = [
-  {path: 'login',component: LoginComponent, data: {animation: 'login'} },
-  {path: 'signup',component: SignupComponent, data: {animation: 'signup'} },
-  {path: 'home',component: MenuPrincipalComponent,data: {animation: 'home'}},
-  {path: 'quiensoy',component: QuienSoyComponent,data: {animation: 'home'}},
+  {
+    path: 'login', loadChildren: () =>
+      import('./pages/login/login.module').then(m => m.LoginModule),
+    data: { animation: 'login' }
+  },
+  {
+    path: 'signup',
+    loadChildren: () =>
+      import('./pages/signup-user/signup-user.module').then(m => m.SignupUserModule),
+    data: { animation: 'signup' }
+  },
+  /*
+   {path: 'quiensoy',component: QuienSoyComponent,data: {animation: 'home'}}, */
+  {
+    path: `home`, loadChildren: () =>
+      import('./pages/menu-principal/menu-principal.module').then(m => m.MenuPrincipalModule)
+  },
+  {
+    path: `quiensoy`, loadChildren: () =>
+      import('./pages/quien-soy/quien-soy.module').then(m => m.QuienSoyModule)
+  },
+  {
+    path: `sala-de-chat`, loadChildren: () =>
+      import('./pages/sala-de-chat/sala-de-chat.module').then(m => m.SalaDeChatModule)
+  },
   { path: ``, redirectTo: `login`, pathMatch: `full` }
 ];
 
