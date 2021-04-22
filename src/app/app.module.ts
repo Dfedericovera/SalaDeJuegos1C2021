@@ -20,6 +20,7 @@ import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { DatePipe } from '@angular/common';
 import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 import { SalaDeChatComponent } from './pages/sala-de-chat/sala-de-chat.component';
+import { MenujuegosComponent } from './pages/menujuegos/menujuegos.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SalaDeChatComponent } from './pages/sala-de-chat/sala-de-chat.component
     FormUserComponent,
     AlertComponent,
     QuienSoyComponent,
-    SalaDeChatComponent
+    SalaDeChatComponent,
+    MenujuegosComponent
   ],
   imports: [
     BrowserModule,
