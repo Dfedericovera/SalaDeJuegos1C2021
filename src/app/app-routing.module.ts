@@ -44,6 +44,14 @@ const routes: Routes = [
     path: `tateti`, loadChildren: () =>
       import('./pages/tateti/tateti.module').then(m => m.TatetiModule)
   },
+  {
+    path: `caraoseca`, loadChildren: () =>
+      import('./pages/caraoseca/caraoseca.module').then(m => m.CaraosecaModule)
+  },
+  {
+    path: `memotest`, loadChildren: () =>
+      import('./pages/memotest/memotest.module').then(m => m.MemotestModule)
+  },
   { path: ``, redirectTo: `login`, pathMatch: `full` }
 ];
 

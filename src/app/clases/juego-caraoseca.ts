@@ -1,5 +1,5 @@
 import { Juego } from '../clases/juego'
-import { Jugador } from './jugador';
+import { User } from './Usuario';
 
 export class JuegoCaraoceca extends Juego {
 
@@ -24,7 +24,7 @@ export class JuegoCaraoceca extends Juego {
     ];
     public monedaSeleccionada:any;
 
-    constructor(jugador?:Jugador) {
+    constructor(jugador?:User) {
         super(null,'Cara o Ceca',null,jugador);
     }
 

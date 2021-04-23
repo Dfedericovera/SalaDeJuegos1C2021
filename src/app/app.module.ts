@@ -23,6 +23,8 @@ import { SalaDeChatComponent } from './pages/sala-de-chat/sala-de-chat.component
 import { MenujuegosComponent } from './pages/menujuegos/menujuegos.component';
 import { PptComponent } from './pages/ppt/ppt.component';
 import { TatetiComponent } from './pages/tateti/tateti.component';
+import { MemotestComponent } from './pages/memotest/memotest.component';
+import { CaraosecaComponent } from './pages/caraoseca/caraoseca.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { TatetiComponent } from './pages/tateti/tateti.component';
     SalaDeChatComponent,
     MenujuegosComponent,
     PptComponent,
-    TatetiComponent
+    TatetiComponent,
+    MemotestComponent,
+    CaraosecaComponent
   ],
   imports: [
     BrowserModule,
