@@ -40,6 +40,10 @@ const routes: Routes = [
     path: `ppt`, loadChildren: () =>
       import('./pages/ppt/ppt.module').then(m => m.PptModule)
   },
+  {
+    path: `tateti`, loadChildren: () =>
+      import('./pages/tateti/tateti.module').then(m => m.TatetiModule)
+  },
   { path: ``, redirectTo: `login`, pathMatch: `full` }
 ];
 

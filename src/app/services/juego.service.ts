@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Juego } from '../clases/juego';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class JuegoService implements OnInit
 {
   public juegos: Array<Juego>;

@@ -1,8 +1,8 @@
 import { Juego } from './juego';
-import { Jugador } from './jugador';
+import { User } from './Usuario';
 
 export class JuegoTateti extends Juego {
-    constructor(jugador?:Jugador ) {
+    constructor(jugador?:User ) {
         super(null,"TaTeTi",false,jugador);      
       }
 }

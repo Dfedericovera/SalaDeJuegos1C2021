@@ -22,6 +22,7 @@ import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 import { SalaDeChatComponent } from './pages/sala-de-chat/sala-de-chat.component';
 import { MenujuegosComponent } from './pages/menujuegos/menujuegos.component';
 import { PptComponent } from './pages/ppt/ppt.component';
+import { TatetiComponent } from './pages/tateti/tateti.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PptComponent } from './pages/ppt/ppt.component';
     QuienSoyComponent,
     SalaDeChatComponent,
     MenujuegosComponent,
-    PptComponent
+    PptComponent,
+    TatetiComponent
   ],
   imports: [
     BrowserModule,
