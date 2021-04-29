@@ -10,14 +10,14 @@ export class JuegoCaraoceca extends Juego {
     monedas = [
         {
             name: "cara",
-            img: "../../../assets/imagenes/caraoceca/cara.png",
+            img: "../../../assets/images/cara.png",
             id: 1,
             isTouched: false,
 
         },
         {
             name: "ceca",
-            img: "../../../assets/imagenes/caraoceca/ceca.png",
+            img: "../../../assets/images/ceca.png",
             id: 2,
             isTouched: false,
         }

@@ -1,16 +1,18 @@
+<app-header class="container"></app-header>
+
 <div class="container" *ngIf='isPlaying'>
-    <div class="card-deck mb-3  row">
+    <div class="card-deck mb-3  row mt-8">
         <div class="card mb-3 shadow-sm text-white bg-transparent ">
             <div class="border border-danger">
                 <div class="card-body">
-                    <div class="text-white" style="height:250px; width: 250px;">
+                    <div class="text-dark" style="height:250px; width: 250px;">
                         <h3>Suerte</h3>
                         <p>Esta es tu suerte,<br>
                             Es el porcentaje que
                             aumentará cada vez <br>
                             que tires la moneda <br>
                             guardaremos tu suerte <br>
-                            ese sera el record.
+                            ese será tu record.
                         </p>
                         <p>Suerte: {{suerte}}</p>
                     </div>
@@ -38,9 +40,9 @@
 <!-- MENU -->
 <div *ngIf='!isPlaying' class="menu">
     <div class="container">
-        <div class="card-deck mb-3 text-center  ">
+        <div class="card-deck mb-3 text-center mt-5  ">
 
-            <div class="card mb-4 shadow-sm text-white bg-transparent border border-primary">
+            <div class="card mb-4 shadow-sm text-white bg-dark border border-primary">
 
 
                 <div class="card-header">
@@ -49,7 +51,7 @@
                 </div>
 
                 <div class="card-body">
-                    <p *ngIf="!caraoceca.gano">Probá tu suerte, elegí cara o ceca</p>
+                    <p *ngIf="!caraoceca.gano">Probá tu suerte, <u><b>elegí</b></u>   cara o ceca</p>
                     <div class="row">
                         <div class="imagenFondo border col-sm rounded-circle" #card
                             [ngClass]="caraoceca.monedas[0].isTouched ? 'border-danger' : 'border-dark'">
@@ -72,10 +74,10 @@
                         primer intento? <br> cruza los dedos!</p>
                     <p *ngIf="caraoceca.gano">Ganaste! con una probabilidad de: {{this.suerte}}% </p>
                     <!-- <img src="../../../assets/imagenes/listado.jpg" alt="" class="responsive"> -->
-                    <button *ngIf="!caraoceca.gano" type="button" class="btn btn-lg btn-block btn-outline-primary"
+                    <button *ngIf="!caraoceca.gano" type="button" class="btn btn-lg btn-block btn-outline-success"
                         [disabled]="!caraoceca.monedaSeleccionada" (click)="jugar()">Jugar</button>
-                    <button *ngIf="caraoceca.gano" type="button" class="btn btn-lg btn-block btn-outline-primary"
-                        [disabled]="!caraoceca.monedaSeleccionada" (click)="reiniciar()">Jugar</button>
+                    <button *ngIf="caraoceca.gano" type="button" class="btn btn-lg btn-block btn-outline-success"
+                        [disabled]="!caraoceca.monedaSeleccionada" (click)="reiniciar()">Jugar de nuevo</button>
                 </div>
             </div>
         </div>

@@ -6,103 +6,29 @@ export class JuegoMemotest extends Juego {
     tiempo:any;
 
     cartaSeleccionada: any;
-    cards = [
-        {
-            name: "batman",
-            img: "../../../assets/imagenes/svg/batman.svg",
-            id: 1,
-            isTouched: false,
-
-        },
-        {
-            name: "ciclope",
-            img: "../../../assets/imagenes/svg/ciclope.svg",
-            id: 2,
-            isTouched: false,
-        },
-        {
-            name: "flash",
-            img: "../../../assets/imagenes/svg/flash.svg",
-            id: 3,
-            isTouched: false,
-        },
-        {
-            name: "freddy",
-            img: "../../../assets/imagenes/svg/freddy.svg",
-            id: 4,
-            isTouched: false,
-        },
-        {
-            name: "hulk",
-            img: "../../../assets/imagenes/svg/hulk.svg",
-            id: 5,
-            isTouched: false,
-        },
-        {
-            name: "jason",
-            img: "../../../assets/imagenes/svg/jason.svg",
-            id: 6,
-            isTouched: false,
-        },
-        {
-            name: "luigi",
-            img: "../../../assets/imagenes/svg/luigi.svg",
-            id: 7,
-            isTouched: false,
-        },
-        {
-            name: "mario",
-            img: "../../../assets/imagenes/svg/mario.svg",
-            id: 8,
-            isTouched: false,
-        },
-        {
-            name: "robocop",
-            img: "../../../assets/imagenes/svg/robocop.svg",
-            id: 9,
-            isTouched: false,
-        },
-        {
-            name: "superman",
-            img: "../../../assets/imagenes/svg/superman.svg",
-            id: 10,
-            isTouched: false,
-        },
-        {
-            name: "thor",
-            img: "../../../assets/imagenes/svg/thor.svg",
-            id: 11,
-            isTouched: false,
-        },
-        {
-            name: "wolverine",
-            img: "../../../assets/imagenes/svg/wolverine.svg",
-            id: 12,
-            isTouched: false,
-        },
-    ];
+    cards:Array<any>=[];
 
     constructor(jugador?:User) {
         super(null,'Memotest',null,jugador);
-        this.duplicarCartas();
     }
 
-    private duplicarCartas() {
+/*     public duplicarCartas(cartas:Array<any>) {
         var clone = new Array();
-        this.cards.forEach(card => {
-            clone.push(JSON.parse(JSON.stringify(card))
-
-            );
+        cartas.forEach(card => {
+            clone.push(card);
+            console.log(card);
         });
         clone.forEach(c => {
             c.name = "duplicated" + c.name;
         })
-        this.cards = this.cards.concat(clone);
-        this.cards.sort(function () { return Math.random() - 0.5 });
-    }
+        cartas = this.cards.concat(clone);
+        console.log(clone);
+        cartas.sort(function () { return Math.random() - 0.5 });
+        return cartas;
+    } */
 
     public verificarCarta(card?: any): boolean {
-        if (card.id && card.id == this.cartaSeleccionada.id) {
+        if (card.numericCode && card.numericCode == this.cartaSeleccionada.numericCode) {
             return true;
         }
         else {

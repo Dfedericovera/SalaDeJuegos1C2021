@@ -25,6 +25,7 @@ import { PptComponent } from './pages/ppt/ppt.component';
 import { TatetiComponent } from './pages/tateti/tateti.component';
 import { MemotestComponent } from './pages/memotest/memotest.component';
 import { CaraosecaComponent } from './pages/caraoseca/caraoseca.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { CaraosecaComponent } from './pages/caraoseca/caraoseca.component';
     AngularFireStorageModule,
     RecaptchaModule,  //this is the recaptcha main module
     RecaptchaFormsModule, //this is the module for form incase form validation
+    HttpClientModule,
     
   ],
   providers: [DatePipe],
