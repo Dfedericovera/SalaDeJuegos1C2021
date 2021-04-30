@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { SignupComponent } from './pages/signup-user/signup.component';
-import { MenuPrincipalComponent } from './pages/menu-principal/menu-principal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
-import { SaladechatComponent } from './pages/saladechat/saladechat.component';
+import { AuthGuard } from './services/authguard.service';
 const routes: Routes = [
   {
     path: 'login', loadChildren: () =>
@@ -16,13 +12,16 @@ const routes: Routes = [
     path: 'signup',
     loadChildren: () =>
       import('./pages/signup-user/signup-user.module').then(m => m.SignupUserModule),
-    data: { animation: 'signup' }
+    data: { animation: 'signup' },
+
   },
   /*
    {path: 'quiensoy',component: QuienSoyComponent,data: {animation: 'home'}}, */
   {
-    path: `home`, loadChildren: () =>
-      import('./pages/menu-principal/menu-principal.module').then(m => m.MenuPrincipalModule)
+    path: `home`,
+    loadChildren: () =>
+      import('./pages/menu-principal/menu-principal.module').then(m => m.MenuPrincipalModule),
+    canActivate: [AuthGuard],
   },
   {
     path: `quiensoy`, loadChildren: () =>
@@ -52,7 +51,7 @@ const routes: Routes = [
     path: `memotest`, loadChildren: () =>
       import('./pages/memotest/memotest.module').then(m => m.MemotestModule)
   },
-  { path: ``, redirectTo: `login`, pathMatch: `full` }
+  { path: ``, redirectTo: `home`, pathMatch: `full` }
 ];
 
 @NgModule({
